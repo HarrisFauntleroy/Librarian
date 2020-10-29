@@ -1,0 +1,38 @@
+PHP has been chosen as the programming language to handle the website/database integration project. However, other programming languages may be used if they are considered a better solution for the project.
+
+PART ONE
+
+    1. Create the login and registration pages 
+    2. Use an appropriate hashing/encryption method for the password
+    3. Write the necessary PHP PDO code or the latest libraries or extension to connect to the database
+    4. Validate the form input 
+    5. Sanitise all form input before using it in the database – use appropriate methods to filter the data
+    6. Comment and indent the code appropriately
+
+PART TWO
+    1. Write the necessary PHP PDO code to select and display all books in the database with the corresponding details. The output must be properly formatted and must be responsive.
+    2. Write the necessary PHP PDO code to add (insert) new books to the database. When adding a new book you need to enter new information in four tables (book, author, bookplot, bookranking)
+    3. Write the necessary PHP PDO code to update the selected book
+    4. Write the necessary PHP PDO code to delete the selected book
+    5. Comment and indent the code appropriately
+
+PART THREE
+    1. Security and Sessions. Write the necessary PHP code to ensure that if a person is not logged in they cannot access the admin pages by, for example, typing the page URL. To achieve his part you need to use sessions.
+    2. Write the necessary PHP code to close a session and logout of the site.
+    
+PART FOUR
+Site Files/Database Files
+Completed site folder and a copy of the database structure and data (exported file).
+	Include a ‘read me’ file for any information that the assessor may need to know to access your project e.g. passwords username and so on.
+Word or PDF document
+Take screenshots of the following PHP code segments and include them in the document. Provide a brief explanation for each segment:
+
+The following sections of PHP code must be formatted correctly, the code must also be indented and commented.
+
+    1. Connection to the database 
+    2. Password_hash()  utilisation 
+    3. Data input sanitation
+    4. Insert query statement/s
+    5. Update query statement/s
+    6. Delete query statement/s
+    7. Session code (create, destroy and redirect)

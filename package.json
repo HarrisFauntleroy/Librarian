@@ -1,0 +1,29 @@
+{
+  "name": "library-site",
+  "version": "1.0.0",
+  "description": "Library site REST API ",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server",
+    "devstart": "nodemon server",
+    "browsersync": "browser-sync start --proxy 'localhost:5000' --no-notify --files 'views/' 'public/'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HarrisFauntleroy/library-site.git"
+  },
+  "author": "Harris Fauntleroy",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/HarrisFauntleroy/library-site/issues"
+  },
+  "homepage": "https://github.com/HarrisFauntleroy/library-site#readme",
+  "devDependencies": {
+    "browser-sync": "^2.26.13",
+    "nodemon": "^2.0.6"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "mysql": "^2.18.1"
+  }
+}
