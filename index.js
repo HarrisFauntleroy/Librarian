@@ -1,4 +1,8 @@
 const express = require('express');
+const expressLayouts = require('express-ejs-layouts');
+const session = require('express-session');
+const methodOverride = require("method-override");
+const { ensureAuthenticated } = require('./config/auth');
 const db = require('./config/db')
 
 const app = express();
@@ -11,25 +15,46 @@ db.connect((err) => {
     console.log('MySQL Connected...')
 });
 
+// Express Sessions middleware
+app.use(session({
+    secret: 'secret',
+    resave: true,
+    saveUninitialized: true
+}));
 
-// Get Books
+//EJS
+app.use(expressLayouts);
+app.use(methodOverride("_method"));
+app.use(express.static(__dirname + "/public"));
+app.set('view engine', 'ejs');
+
+// Get all from Books
+app.get('/', (req, res) => {
+    let sql = 'SELECT * FROM book';
+    db.query(sql, (err, result, fields) => {
+        if (err) throw err;
+        res.render('index', { result });
+        console.log(Object.keys(result))
+    });
+});
+
+// Get all from Books
 app.get('/books', (req, res) => {
-    let sql = 'SELECT BookTitle FROM book';
+    let sql = 'SELECT * FROM book';
     db.query(sql, (err, result, fields) => {
         if (err) throw err;
         res.send(result);
     });
 });
 
-// Get Authors
+// Get all from Authors
 app.get('/authors', (req, res) => {
-    let sql = 'SELECT Name FROM author';
+    let sql = 'SELECT * FROM author';
     db.query(sql, (err, result, fields) => {
         if (err) throw err;
         res.send(result);
     });
 });
-
 
 const PORT = process.env.PORT || 5000;
 

@@ -1,0 +1,35 @@
+<div class='container'>
+
+    <button type="button" class="btn btn-success">Add new</button>
+
+    <% result.forEach(function(prop){ %>
+    <div class="border rounded shadow p-3 mb-5 bg-white rounded card" style="width: 18rem;">
+        <img class="card-img-top" src="<%= prop.coverImagePath %>" alt='Book  Cover' />
+        <div class="card-body">
+            <h2 class="card-title"><%= prop.BookTitle %></h2>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <strong>Book ID:</strong> <%= prop.BookID %>
+                </li>
+                <li class="list-group-item">
+                    <strong>Original Title:</strong> <%= prop.OriginalTitle %>
+                </li>
+                <li class="list-group-item">
+                    <strong>Year Of Publication:</strong> <%= prop.YearOfPublication %>
+                </li>
+                <li class="list-group-item">
+                    <strong>Genre:</strong> <%= prop.Genre %>
+                </li>
+                <li class="list-group-item">
+                    <strong>Millions Sold:</strong> <%= prop.MillionsSold %>
+                </li>
+                <li class="list-group-item">
+                    <strong>Original Language:</strong> <%= prop.LanguageWritten %>
+                </li>
+            </ul>
+            <a class="btn btn-primary">Edit</a>
+            <a class="btn btn-danger">Delete</a>
+        </div>
+    </div>
+    <% }); %>
+</div>
