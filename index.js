@@ -39,8 +39,8 @@ app.get('/', (req, res) => {
 });
 
 // Get all from Books
-app.get('/books', (req, res) => {
-    let sql = 'SELECT * FROM book';
+app.get('/addcolumn', (req, res) => {
+    let sql = 'ALTER TABLE book ADD coverImagePath BLOB';
     db.query(sql, (err, result, fields) => {
         if (err) throw err;
         res.send(result);
