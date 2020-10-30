@@ -26,7 +26,7 @@ npm run build
 
 # See it in action
 
-https://library-admin-panel.ts.r.appspot.com/
+https://library-admin-panel-hf.ts.r.appspot.com/
 
 ## Contributing
 
