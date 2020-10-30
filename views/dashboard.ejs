@@ -1,0 +1,13 @@
+<div class='container row'>
+    <% result.forEach(function(prop){ %>
+    <% fullName = prop.Name + prop.Surname %>
+    <div class="border rounded shadow p-3 mb-5 bg-white rounded card" style="width: 18rem;">
+        <button type="button" class="btn btn-success">Add new</button>
+        <div class="card-body">
+            <button type="button" class="btn btn-success">Add new</button>
+            <h2 class="card-title">Welcome: <%= prop.firstName %></h2>
+            Test
+        </div>
+    </div>
+    <% }); %>
+</div>

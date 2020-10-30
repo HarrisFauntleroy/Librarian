@@ -1,11 +1,11 @@
-const express = require('express');
-const expressLayouts = require('express-ejs-layouts');
-const session = require('express-session');
-const methodOverride = require("method-override");
-const { ensureAuthenticated } = require('./config/auth');
-const db = require('./config/db')
-
-const app = express();
+const express = require('express'),
+    expressLayouts = require('express-ejs-layouts'),
+    session = require('express-session'),
+    bodyParser = require("body-parser"),
+    methodOverride = require("method-override"),
+    { ensureAuthenticated } = require('./config/auth'),
+    db = require('./config/db'),
+    app = express();
 
 // Connect database
 db.connect((err) => {
@@ -15,44 +15,49 @@ db.connect((err) => {
     console.log('MySQL Connected...')
 });
 
-// Express Sessions middleware
-app.use(session({
-    secret: 'secret',
-    resave: true,
-    saveUninitialized: true
-}));
-
 //EJS
 app.use(expressLayouts);
 app.use(methodOverride("_method"));
 app.use(express.static(__dirname + "/public"));
 app.set('view engine', 'ejs');
 
-// Get all from Books
+// Landing/Login
 app.get('/', (req, res) => {
-    let sql = 'SELECT * FROM book';
+    let sql = 'SELECT * FROM book, author, bookplot';
     db.query(sql, (err, result, fields) => {
         if (err) throw err;
-        res.render('index', { result });
-        console.log(Object.keys(result))
+        res.render('login', { result });
+        console.log(`Login ${Object.keys(result)}`)
+    });
+});
+
+// Dashboard
+app.get('/dashboard', (req, res) => {
+    let sql = 'SELECT * FROM book, author, bookplot, changelog, users, login';
+    db.query(sql, (err, result, fields) => {
+        if (err) throw err;
+        res.render('dashboard', { result });
+        console.log(`Dashboard ${Object.keys(result)}`)
     });
 });
 
 // Get all from Books
-app.get('/addcolumn', (req, res) => {
-    let sql = 'ALTER TABLE book ADD coverImagePath BLOB';
+app.get('/books', (req, res) => {
+    let sql = 'SELECT * FROM book, bookplot WHERE bookplot.BookID = book.BookID';
     db.query(sql, (err, result, fields) => {
         if (err) throw err;
-        res.send(result);
+        res.render('books', { result });
+        console.log(`Books ${Object.keys(result)}`)
     });
 });
 
 // Get all from Authors
 app.get('/authors', (req, res) => {
-    let sql = 'SELECT * FROM author';
+    let sql = 'SELECT * FROM book, author, bookplot, changelog, users, login';
     db.query(sql, (err, result, fields) => {
         if (err) throw err;
-        res.send(result);
+        res.render('authors', { result });
+        console.log(`Authors ${Object.keys(result)}`)
     });
 });
 

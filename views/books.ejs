@@ -1,0 +1,67 @@
+<div class="row">
+
+    <% if (result.length > 0) { %>
+    <% var index = 0; %>
+    <% for (let results of result) { %>
+    <% index++ %>
+    <div id="accordion" class="border rounded shadow mt-4 m-2 bg-transparent rounded card">
+        <div class="card" style="width: 16rem;">
+            <img class=" card-img-top" src="./covers/9780451530578.jpg" alt='Book  Cover'
+                style="object-fit: cover; height: auto;" />
+
+            <div class="card-body">
+                <strong>Book ID:</strong> <%= results.BookID %>
+            </div>
+
+            <!--1-->
+            <div class="card-header" id="headingOne">
+                <h5 class="mb-0">
+                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne-<%= index %>"
+                        aria-expanded="false" aria-controls="collapseOne">
+                        Information
+                    </button>
+                </h5>
+            </div>
+            <div id="collapseOne-<%= index %>" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                <div class="card-body">
+                    <strong>Book Title:</strong> <%= results.BookTitle %>
+                    <strong>Original Title:</strong> <%= results.OriginalTitle %>
+                    <br>
+                    <strong>Year Of Publication:</strong> <%= results.YearofPublication %>
+                    <br>
+                    <strong>Genre:</strong> <%= results.Genre %>
+                    <br>
+                    <strong>Original Language:</strong> <%= results.LanguageWritten %>
+                    <br>
+                    <strong>Millions Sold:</strong> <%= results.MillionsSold %>
+                    <a href="<%= results.PlotSource %>" class="btn btn-primary center">See More</a>
+                </div>
+            </div>
+
+            <!--2-->
+            <div class="card-header" id="headingOne">
+                <h5 class="mb-0">
+                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapseTwo-<%= index %>"
+                        aria-expanded="false" aria-controls="collapseTwo">
+                        Plot Summary
+                    </button>
+                </h5>
+            </div>
+            <div id="collapseTwo-<%= index %>" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                <div class="card-body">
+                    <%= results.Plot %>
+                </div>
+            </div>
+
+            <!--3-->
+            <div class="btn-group">
+                <a class="btn btn-primary w-50">Edit</a>
+                <a class="btn btn-danger w-50">Delete</a>
+            </div>
+
+        </div>
+    </div>
+    <% } %>
+    <% } %>
+
+</div>
