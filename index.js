@@ -70,6 +70,17 @@ app.get('/authors', (req, res) => {
     });
 });
 
+// Return all tables
+app.get('/return', (req, res) => {
+    let sql = 'SELECT TOP 0 * FROM books';
+    db.query(sql, (err, result, fields) => {
+        if (err) throw err;
+        res.render('books', { result });
+        console.log(`All results ${Object.keys(result)}`)
+    });
+});
+
+
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => console.log(`Server started on ${PORT}`));
