@@ -14,6 +14,10 @@ db.connect((err) => {
     console.log('MySQL Connected...')
 });
 
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+
 //EJS
 app.use(expressLayouts);
 app.use(methodOverride("_method"));
@@ -44,9 +48,15 @@ app.get('/dashboard', (req, res) => {
 app.get('/books', (req, res) => {
     let sql = 'SELECT * FROM book, bookplot WHERE bookplot.BookID = book.BookID';
     db.query(sql, (err, result, fields) => {
-        if (err) throw err;
+
+        if (err) {
+            res.render('books', { result });
+            console.log(`Books ${Object.keys(result)}`)
+            console.log(`Body1: ${req.body}`)
+        }
         res.render('books', { result });
         console.log(`Books ${Object.keys(result)}`)
+        console.log(`Body2: ${req.body.Object}`)
     });
 });
 
