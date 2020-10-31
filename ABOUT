@@ -36,3 +36,5 @@ The following sections of PHP code must be formatted correctly, the code must al
     5. Update query statement/s
     6. Delete query statement/s
     7. Session code (create, destroy and redirect)
+
+    UPDATE book SET coverImagePath = "../covers/lordoftherings.jpeg" WHERE BookID = 3

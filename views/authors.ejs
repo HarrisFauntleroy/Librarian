@@ -1,39 +1,74 @@
-<div class='container row'>
+<button type="button" class="btn btn-success position-fixed rounded-circle"
+    style="bottom: 8px; right:8px; z-index: 1;"><i class="fas fa-plus"></i></button>
 
-    <button type="button" class="btn btn-success">Add new</button>
-
-    <% result.forEach(function(prop){ %>
-    <% fullName = prop.Name + prop.Surname %>
-    <div class="border rounded shadow p-3 mb-5 bg-white rounded card" style="width: 18rem;">
-        <img class="card-img-top" src="<%= prop.coverImagePath %>" alt='Book  Cover' />
-        <div class="card-body">
-            <h2 class="card-title"><%= prop.BookTitle %></h2>
-            <ul class="list-group">
-                <li class="list-group-item">
-                    <strong>Author:</strong> <%= fullName %>
-                </li>
-                <li class="list-group-item">
-                    <strong>Original Title:</strong> <%= prop.OriginalTitle %>
-                </li>
-                <li class="list-group-item">
-                    <strong>Year Of Publication:</strong> <%= prop.YearofPublication %>
-                </li>
-                <li class="list-group-item">
-                    <strong>Genre:</strong> <%= prop.Genre %>
-                </li>
-                <li class="list-group-item">
-                    <strong>Millions Sold:</strong> <%= prop.MillionsSold %>
-                </li>
-                <li class="list-group-item">
-                    <strong>Original Language:</strong> <%= prop.LanguageWritten %>
-                </li>
-                <li class="list-group-item">
-                    <strong>Book ID:</strong> <%= prop.BookID %>
-                </li>
-            </ul>
-            <a class="btn btn-primary">Edit</a>OriginalOriginalOriginal
-            <a class="btn btn-danger">Delete</a>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">WARNING!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                You are about to delete this book!
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Go Back</button>
+                <button type="button" class="btn btn-danger">Confirm Delete</button>
+            </div>
         </div>
     </div>
-    <% }); %>
+</div>
+
+<div class="row" id="cardContainer">
+
+    <% if (result.length > 0) { %>
+    <% var index = 0; %>
+    <% for (let results of result) { %>
+    <% index++ %>
+    <section id="accordion" class="border rounded shadow mt-4 m-2 bg-transparent rounded card mx-auto"
+        name="<%= results.Name %> <%= results.Surname %>">
+        <div class="card" style="width: 288px;">
+
+            <div class="card-body">
+                </strong> <%= results.Name %> <%= results.Surname %>
+                <br>
+                <strong>Author ID:</strong> <%= results.AuthorID %>
+            </div>
+
+
+
+            <!--1-->
+            <div class="card-header" id="headingOne">
+                <h5 class="mb-0">
+                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne-<%= index %>"
+                        aria-expanded="false" aria-controls="collapseOne">
+                        Information
+                    </button>
+                </h5>
+            </div>
+            <div id="collapseOne-<%= index %>" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                <div class="card-body">
+                    <strong>Nationality:</strong> <%= results.Nationality %>
+                    <br>
+                    <strong>Date of Birth:</strong> <%= results.BirthYear %>
+                    <br>
+                    <strong>Date of Death:</strong> <%= results.DeathYear %>
+                </div>
+            </div>
+
+            <!--3-->
+            <div class="btn-group">
+                <a class="btn btn-primary w-50">Edit</a>
+                <button type="button" class="btn btn-danger w-50" data-toggle="modal"
+                    data-target="#exampleModal">Delete</button>
+            </div>
+
+        </div>
+    </section>
+    <% } %>
+    <% } %>
+
 </div>

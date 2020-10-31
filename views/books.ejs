@@ -1,10 +1,5 @@
 <button type="button" class="btn btn-success position-fixed rounded-circle"
-    style="bottom: 8px; right:8px; z-index: 1;"><i class="fas fa-plus"></i></button>
-
-<form class="form-inline mx-auto mt-4" style="max-width: max-content;" action="/books" method="POST">
-    <input class="form-control mr-sm-2" type="search" onkeyup="myFunction()" placeholder="Search" aria-label="Search"
-        id="search">
-</form>
+    style="bottom: 30px; right:0px; z-index: 1;"><i class="fas fa-plus"></i></button>
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -28,6 +23,7 @@
 </div>
 
 <div class="row" id="cardContainer">
+
     <% if (result.length > 0) { %>
     <% var index = 0; %>
     <% for (let results of result) { %>
@@ -35,9 +31,8 @@
     <section id="accordion" class="border rounded shadow mt-4 m-2 bg-transparent rounded card mx-auto"
         name="<%= results.BookTitle %>">
         <div class="card" style="width: 288px;">
-            <img class=" card-img-top" src="<%= results.imageCoverPath %>" alt='Book  Cover'
-                style="object-fit: cover; height: auto;" />
-
+            <img class=" card-img-top" src="<%= results.coverImagePath %>" alt='Book  Cover'
+                style="object-fit: cover; height: 450px;" />
             <div class="card-body">
                 <strong>Book ID:</strong> <%= results.BookID %>
             </div>
@@ -95,25 +90,3 @@
     <% } %>
 
 </div>
-
-<script>
-    function myFunction() {
-
-        let input = document.getElementById('search').value.toUpperCase();
-        let bookCard = document.getElementsByTagName('section');
-
-        for (i = 0; i < bookCard.length; i++) {
-
-            txtValue = bookCard[i].getAttribute('name').toUpperCase()
-
-            if (txtValue.indexOf(input) > -1) {
-                bookCard[i].style.display = "";
-                console.log(`Showing: ${bookCard[i].getAttribute('name')}`)
-            } else {
-                bookCard[i].style.display = "none";
-                console.log(`Hiding: ${bookCard[i].getAttribute('name')}`)
-            }
-        }
-
-    }
-</script>

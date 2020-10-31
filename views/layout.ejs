@@ -5,20 +5,41 @@
     <%- include ('partials/head') %>
 </head>
 
-<body>
+<body style="margin-bottom: 30px;">
+
+    <% if (1 == 1) { %>
 
     <%- include ('partials/navigation') %>
-
     <div class="container">
         <%- body %>
     </div>
+    <%- include ('partials/footer') %>
 
-    <footer class="footer">
-        <div class="container">
-            <span class="text-muted text-center"><%- include ('partials/footer') %></span>
-        </div>
-    </footer>
+    <% } else { %>
+    <%- include ('partials/login') %>
+    <% } %>
 
 </body>
+
+<script>
+    function myFunction() {
+
+        // TODO: Add functionality to search by author name as well
+        let input = document.getElementById('search').value.toUpperCase();
+        let bookCard = document.getElementsByTagName('section');
+
+        for (i = 0; i < bookCard.length; i++) {
+
+            txtValue = bookCard[i].getAttribute('name').toUpperCase()
+
+            if (txtValue.indexOf(input) > -1) {
+                bookCard[i].style.display = "";
+            } else {
+                bookCard[i].style.display = "none";
+            }
+        }
+
+    }
+</script>
 
 </html>

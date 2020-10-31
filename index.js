@@ -26,12 +26,7 @@ app.set('view engine', 'ejs');
 
 // Landing/Login
 app.get('/', (req, res) => {
-    let sql = 'SELECT * FROM book, author, bookplot';
-    db.query(sql, (err, result, fields) => {
-        if (err) throw err;
-        res.render('login', { result });
-        console.log(`Login ${Object.keys(result)}`)
-    });
+    res.render('index');
 });
 
 // Dashboard
@@ -39,47 +34,38 @@ app.get('/dashboard', (req, res) => {
     let sql = 'SELECT * FROM book, author, bookplot, changelog, users, login';
     db.query(sql, (err, result, fields) => {
         if (err) throw err;
-        res.render('dashboard', { result });
-        console.log(`Dashboard ${Object.keys(result)}`)
     });
 });
 
 // Get all from Books
 app.get('/books', (req, res) => {
+    let table = 'books'
     let sql = 'SELECT * FROM book, bookplot WHERE bookplot.BookID = book.BookID';
     db.query(sql, (err, result, fields) => {
-
-        if (err) {
-            res.render('books', { result });
-            console.log(`Books ${Object.keys(result)}`)
-            console.log(`Body1: ${req.body}`)
-        }
-        res.render('books', { result });
-        console.log(`Books ${Object.keys(result)}`)
-        console.log(`Body2: ${req.body.Object}`)
+        if (err) throw err;
+        res.render('books', { result, table });
     });
 });
 
 // Get all from Authors
 app.get('/authors', (req, res) => {
-    let sql = 'SELECT * FROM book, author, bookplot, changelog, users, login';
+    let table = 'authors'
+    let sql = 'SELECT * FROM author';
     db.query(sql, (err, result, fields) => {
         if (err) throw err;
-        res.render('authors', { result });
-        console.log(`Authors ${Object.keys(result)}`)
+        res.render('authors', { result, table });
     });
 });
 
-// Return all tables
-app.get('/return', (req, res) => {
-    let sql = 'SELECT TOP 0 * FROM books';
+// Get all from Users
+app.get('/users', (req, res) => {
+    let table = 'users'
+    let sql = 'SELECT * FROM users';
     db.query(sql, (err, result, fields) => {
         if (err) throw err;
-        res.render('books', { result });
-        console.log(`All results ${Object.keys(result)}`)
+        res.render('users', { result, table });
     });
 });
-
 
 const PORT = process.env.PORT || 5000;
 
