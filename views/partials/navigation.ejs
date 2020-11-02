@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
-  <a class="navbar-brand" href="#">Welcome: <%= result.Name %></a>
+  <a class="navbar-brand" href="/profile"><i class="fas fa-home"></i></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -7,18 +7,14 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-          aria-haspopup="true" aria-expanded="false">
-          Database
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="books">Books</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="authors">Authors</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="users">Users</a>
-        </div>
+      <li class="nav-item">
+        <a class="dropdown-item" href="books">Books</a>
+      </li>
+      <li class="nav-item">
+        <a class="dropdown-item" href="authors">Authors</a>
+      </li>
+      <li class="nav-item">
+        <a class="dropdown-item" href="users">Users</a>
       </li>
       <form class="form-inline my-2 my-lg-0" style="max-width: max-content;" action="/books" method="POST">
         <input class="form-control mr-sm-2" type="search" onkeyup="myFunction()" placeholder="Search <%= table %>..."
@@ -26,6 +22,6 @@
       </form>
       <div class="dropdown-divider"></div>
     </ul>
-    <a class="nav-link" href="#">Login/Logout</a>
+    <a class="nav-link" href="/logout">Logout <i class="fas fa-sign-out-alt" aria-hidden="true"></i></a>
   </div>
 </nav>

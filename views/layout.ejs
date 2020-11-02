@@ -2,12 +2,12 @@
 <html lang="en">
 
 <head>
-    <%- include ('partials/head') %>
+    <%- include ('./partials/head') %>
 </head>
 
 <body style="margin-bottom: 30px;">
 
-    <% if (1 == 1) { %>
+    <% if (login) { %>
 
     <%- include ('partials/navigation') %>
     <div class="container">
@@ -16,7 +16,11 @@
     <%- include ('partials/footer') %>
 
     <% } else { %>
-    <%- include ('partials/login') %>
+
+    <div class="container">
+        <%- body %>
+    </div>
+
     <% } %>
 
 </body>

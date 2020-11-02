@@ -38,3 +38,17 @@ The following sections of PHP code must be formatted correctly, the code must al
     7. Session code (create, destroy and redirect)
 
     UPDATE book SET coverImagePath = "../covers/lordoftherings.jpeg" WHERE BookID = 3
+
+
+
+
+
+
+TEACHER:
+
+Username: userlogin
+Password: 123456
+
+Username: adminlogin
+Password: 654321
+
