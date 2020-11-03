@@ -48,5 +48,8 @@ require('./routes/index')(app, passport);
 
 // Start 
 const PORT = process.env.PORT || 5000;
-
-app.listen(PORT, () => console.log(`Server started on ${PORT}`));
+app.listen(PORT, () => {
+  console.log(`App listening on port ${PORT}`);
+	console.log('Press Ctrl+C to quit.');
+	console.log(`NODE_ENV: ${process.env.NODE_ENV}...`)
+});

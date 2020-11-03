@@ -2,11 +2,12 @@
   "name": "node-authentication",
   "main": "server.js",
   "scripts": {
-    "start": "node ./server",
-    "devstart": "nodemon server",
+    "start": "NODE_ENV=production node ./server",
+    "devstart": "NODE_ENV=development nodemon server",
     "browsersync": "browser-sync start --proxy 'localhost:5000' --no-notify --files 'views/' 'public/'"
   },
   "dependencies": {
+    "@google-cloud/storage": "^5.4.0",
     "bcrypt-nodejs": "0.0.3",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.13.1",

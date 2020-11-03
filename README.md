@@ -1,9 +1,6 @@
 # Library-Admin-Panel
 
-A small website featuring the following:
--An admin panel for interacting with an SQL Database.
--Login and authentication system with password encryption.
--No use registration, users are added by the site admin.
+An Administrative frontend for a MySQL, Node.JS & Express CRUD application.
 
 ## Install
 

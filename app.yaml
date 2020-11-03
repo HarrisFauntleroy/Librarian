@@ -1,1 +1,3 @@
 runtime: nodejs12
+beta_settings:
+  cloud_sql_instances: library-admin-panel-hf-294403:australia-southeast1:library-site2
