@@ -3,8 +3,7 @@
   "main": "server.js",
   "scripts": {
     "start": "NODE_ENV=production node ./server",
-    "devstart": "NODE_ENV=development nodemon server",
-    "browsersync": "browser-sync start --proxy 'localhost:5000' --no-notify --files 'views/' 'public/'"
+    "dev": "NODE_ENV=development nodemon server & browser-sync start --proxy 'localhost:5000' --no-notify --files 'views/' 'public/'"
   },
   "dependencies": {
     "@google-cloud/storage": "^5.4.0",

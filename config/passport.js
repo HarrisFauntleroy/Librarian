@@ -10,6 +10,9 @@ const dbconfig = require('./database');
 const connection = mysql.createPool(dbconfig.connection);
 connection.query('USE ' + dbconfig.database);
 
+process.env.NODE_ENV !== 'development' ?
+console.log(dbconfig.socketpath) : console.log(dbconfig.host)
+
 // expose this function to our app using module.exports
 module.exports = function (passport) {
 

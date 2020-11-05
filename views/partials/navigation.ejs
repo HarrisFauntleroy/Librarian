@@ -11,15 +11,16 @@
         <a class="dropdown-item" href="books">Books</a>
       </li>
       <li class="nav-item">
-        <a class="dropdown-item" href="authors">Authors</a>
-      </li>
-      <li class="nav-item">
         <a class="dropdown-item" href="users">Users</a>
       </li>
+
+      <% if (table == 'everything') {  %> 
+      <% } else { %> 
       <form class="form-inline my-2 my-lg-0" style="max-width: max-content;" action="/books" method="POST">
         <input class="form-control mr-sm-2" type="search" onkeyup="myFunction()" placeholder="Search <%= table %>..."
           aria-label="Search" id="search">
       </form>
+    <% } %> 
       <div class="dropdown-divider"></div>
     </ul>
     <a class="nav-link" href="/logout">Logout <i class="fas fa-sign-out-alt" aria-hidden="true"></i></a>

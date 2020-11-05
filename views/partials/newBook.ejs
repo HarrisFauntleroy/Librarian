@@ -1,0 +1,87 @@
+<!-- ADD NEW -->
+<button type="button" class="btn btn-success position-fixed rounded-circle" data-toggle="modal"
+    data-target="#staticBackdrop" style="bottom: 8px; right:8px; z-index: 1;"><i class="fas fa-plus"></i></button>
+
+<div class="modal fade" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Add New Book</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- show any messages that come back with authentication -->
+                <% if (message.length > 0) { %>
+                <div class="alert alert-danger"><%= message %></div>
+                <% } %>
+
+                <!-- New User -->
+                <form class="form-group" onsubmit="return confirm('Confirm Action?');">
+                    <div class="form-group">
+                        <label>Author Name</label>
+                        <input type="text" class="form-control" name="Name" required autofocus>
+                    </div>
+                    <div class="form-group">
+                        <label>Author Surname</label>
+                        <input type="text" class="form-control" name="Surname" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Author Nationality</label>
+                        <input type="text" class="form-control" name="Nationality" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Year of Birth</label>
+                        <input type="number" class="form-control" name="BirthYear" maxlength="4" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Year of Death</label>
+                        <input type="number" class="form-control" name="DeathYear" maxlength="4" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Book Title</label>
+                        <input type="text" class="form-control" name="BookTitle" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Original Title</label>
+                        <input type="text" class="form-control" name="OriginalTitle" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Year of Publication</label>
+                        <input type="number" class="form-control" name="YearofPublication" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Genre</label>
+                        <input type="text" class="form-control" name="Genre" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Copies Sold (Millions)</label>
+                        <input type="number" class="form-control" name="MillionsSold" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Language Written</label>
+                        <input type="text" class="form-control" name="LanguageWritten" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Cover Image</label>
+                        <input type="text" class="form-control" name="coverImagePath" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Plot</label>
+                        <input type="text" class="form-control" name="Plot" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Plot Source</label>
+                        <input type="text" class="form-control" name="PlotSource" required>
+                    </div>
+
+                    <button name="update" type="submit" formaction="/addBook" formmethod="POST"
+                        class="btn btn-success w-50">CONFIRM</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

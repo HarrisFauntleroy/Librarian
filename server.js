@@ -1,3 +1,5 @@
+const { Router } = require('express').Router;
+
 const express = require('express'),
 	bodyParser = require('body-parser'),
 	session = require('express-session'),
