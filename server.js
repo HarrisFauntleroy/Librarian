@@ -1,33 +1,36 @@
-const { Router } = require('express').Router;
-
 const express = require('express'),
-	bodyParser = require('body-parser'),
+	morgan = require('morgan'),
+	passport = require('passport'),
+	flash = require('connect-flash'),
 	session = require('express-session'),
 	cookieParser = require('cookie-parser'),
-	methodOverride = require("method-override"),
-	expressLayouts = require('express-ejs-layouts'),
-	morgan = require('morgan'),
-	app = express(),
+	fileUpload = require("express-fileupload"),
+	expressLayouts = require('express-ejs-layouts');
 
-	passport = require('passport'),
-	flash = require('connect-flash');
+app = express(),
 
-// Connect to Database and pass in Passport
-require('./config/passport')(passport);
+	// Connect to Database and pass in Passport
+	require('./config/passport')(passport);
 
 // Set up Cookies, BodyParser and Morgan logging
 app.use(morgan('dev'));
 app.use(cookieParser());
-app.use(bodyParser.urlencoded({
-	extended: true
-}));
-app.use(bodyParser.json());
 
-//EJS as View Engine
+// Express Layouts
 app.use(expressLayouts);
-app.use(methodOverride("_method"));
-app.use(express.static(__dirname + "/public"));
+
+// Embedded Javascript View Engine
 app.set('view engine', 'ejs');
+
+// Body Parsing
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// File Upload
+app.use(fileUpload());
+
+// Absolute Paths
+app.use(express.static("./public"));
 
 // Passport Sessions
 app.use(session({
@@ -37,21 +40,20 @@ app.use(session({
 })); // session secret
 app.use(passport.initialize());
 app.use(passport.session());
+
+// Flash Messages
 app.use(flash());
 
-// Global login state
-app.use((req, res, next) => {
-	res.locals.login = req.isAuthenticated();
-	next();
-})
+// Routes
+app.use('/', require('./routes/index'));
+app.use('/', require('./routes/users'));
+app.use('/', require('./routes/books'));
 
-// Router 
-require('./routes/index')(app, passport);
 
 // Start 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-  console.log(`App listening on port ${PORT}`);
+	console.log(`App listening on port ${PORT}`);
 	console.log('Press Ctrl+C to quit.');
 	console.log(`NODE_ENV: ${process.env.NODE_ENV}...`)
 });

@@ -1,5 +1,5 @@
 function myFunction() {
-
+    
     let input = document.getElementById('search').value.toUpperCase();
     let bookCard = document.getElementsByTagName('section');
 
