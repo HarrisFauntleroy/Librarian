@@ -27,7 +27,9 @@ router.get('/users', isLoggedIn, async (req, res) => {
     });
 });
 
-// Delete user
+//////////////////////////////////////////////////////////////////
+// DELETE USER
+//////////////////////////////////////////////////////////////////
 router.post('/deleteUser', async (req, res) => {
     let sql = `DELETE FROM login where loginID = ${req.body.delete}`;
     connection.query(sql, (err, result, fields) => {
@@ -41,7 +43,9 @@ router.post('/deleteUser', async (req, res) => {
     });
 });
 
-// Update user
+//////////////////////////////////////////////////////////////////
+// UPDATE USER
+//////////////////////////////////////////////////////////////////
 router.post('/updateUser', async (req, res) => {
     let sql = `UPDATE login SET username = '${req.body.username}', accessRights = '${req.body.accessRights}' where loginID = '${req.body.update}'`;
     connection.query(sql, (err, result, fields) => {
@@ -55,7 +59,9 @@ router.post('/updateUser', async (req, res) => {
     });
 });
 
+//////////////////////////////////////////////////////////////////
 // ADD USER
+//////////////////////////////////////////////////////////////////
 router.post('/addUser', isLoggedIn, async (req, res, next) => {
     connection.query("SELECT * FROM login WHERE username = ?", [req.body.username], function (err, rows) {
         if (err)

@@ -1,6 +1,5 @@
 <%- include ('partials/newBook') %>
 
-
 <!-- GENERATE CARDS -->
 <% if (result.length > 0) { %>
 <% var index = 0; %>
@@ -26,6 +25,7 @@
         </div>
         <div id="collapseOne-<%= index %>" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
             <div class="card-body">
+                <strong>Author:</strong> <%= results.Name %> <%= results.Surname %>
                 <strong>Book Title:</strong> <%= results.BookTitle %>
                 <strong>Original Title:</strong> <%= results.OriginalTitle %>
                 <br>
@@ -55,39 +55,113 @@
         </div>
 
         <!-- EDIT/DELETE BOOK -->
-        <div class="btn-group" id="headingOne">
-            <button class="btn btn-primary w-50" data-toggle="collapse" data-target="#collapseEdit-<%= index %>"
-                aria-expanded="false" aria-controls="collapseOne">
-                EDIT
-            </button>
-            <button class="btn btn-danger w-50" data-toggle="collapse" data-target="#collapseDelete-<%= index %>"
-                aria-expanded="false" aria-controls="collapseOne">
-                DELETE
-            </button>
-        </div>
+        <form class="btn-group" onsubmit="return confirm('Confirm Action?');">
 
-        <!-- EDIT -->
-        <div id="collapseEdit-<%= index %>" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-            <div class="card-body">
-                <form class="form-group" onsubmit="return confirm('Confirm Action?');">
-                    <!-- TODO ADD EDIT FORM -->
-                    <button name="update" type="submit" formaction="/updateBook" formmethod="POST"
-                        class="btn btn-primary w-50" value="<%= results.BookID %>">Edit</button>
+            <button type="button" class="btn btn-primary w-50" data-toggle="modal"
+                data-target="#collapseEdit-<%= index %>">EDIT</button>
 
-                </form>
+            <button name="delete" type="submit" formaction="/deleteBook" formmethod="POST" class="btn btn-danger w-50"
+                value="<%= results.BookID %>">DELETE</button>
+
+        </form>
+
+
+
+        <div class="modal fade" id="collapseEdit-<%= index %>" data-backdrop="static" tabindex="-1" role="dialog"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Edit: <%= results.BookTitle %></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- show any messages that come back with authentication -->
+                        <% if (message.length > 0) { %>
+                        <div class="alert alert-danger"><%= message %></div>
+                        <% } %>
+
+                        <!-- New User -->
+                        <form class="form-group" onsubmit="return confirm('Confirm Action?');"
+                            enctype="multipart/form-data">
+
+                            <div class="form-group">
+                                <label>Author First Name</label>
+                                <input type="text" class="form-control" name="Name" required autofocus maxlength="30" value="<%= results.Name %>">
+
+                                <label>Author Surname</label>
+                                <input type="text" class="form-control" name="Surname" required maxlength="30" value="<%= results.Surname %>">
+
+                                <label>Author Nationality</label>
+                                <input type="text" class="form-control" name="Nationality" required maxlength="30" value="<%= results.Nationality %>">
+
+                                <label>Year of Birth</label>
+                                <input type="number" class="form-control" name="BirthYear"
+                                    oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                    maxlength="4" required value="<%= results.BirthYear %>">
+
+                                <label>Year of Death</label>
+                                <input type="number" class="form-control" name="DeathYear"
+                                    oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                    type="number" maxlength="4" value="<%= results.DeathYear %>">
+                            </div>
+                            <div class="form-group">
+                                <label>Book Title</label>
+                                <input type="text" class="form-control" name="BookTitle" required maxlength="255" value="<%= results.BookTitle %>">
+                            </div>
+                            <div class="form-group">
+                                <label>Original Title</label>
+                                <input type="text" class="form-control" name="OriginalTitle" required maxlength="255" value="<%= results.OriginalTitle %>">
+                            </div>
+                            <div class="form-group">
+                                <label>Year of Publication</label>
+                                <input type="number" class="form-control" name="YearofPublication"
+                                    oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                    maxlength="4" required value="<%= results.YearofPublication %>">
+                            </div>
+                            <div class="form-group">
+                                <label>Genre</label>
+                                <input type="text" class="form-control" name="Genre" required maxlength="30" value="<%= results.Genre %>">
+                            </div>
+                            <div class="form-group">
+                                <label>Copies Sold (Millions)</label>
+                                <input type="number" class="form-control" name="MillionsSold"
+                                    oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                    maxlength="10" required value="<%= results.MillionsSold %>">
+                            </div>
+                            <div class="form-group">
+                                <label>Language Written</label>
+                                <input type="text" class="form-control" name="LanguageWritten" required maxlength="30" value="<%= results.LanguageWritten %>">
+                            </div>
+                            <div class="form-group">
+                                <label style="overflow-x: hidden;">Cover Image : <%= results.coverImagePath %></label>
+                                <input type="file" name="file">
+                                <input type="hidden" value="<%= results.coverImagePath %>" name="defaultFile">
+                            </div>
+                            <div class="form-group">
+                                <label>Plot</label>
+                                <textarea class="form-control" name="Plot" required><%= results.Plot %></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Plot Source</label>
+                                <input type="text" class="form-control" name="PlotSource" required maxlength="255" value="<%= results.PlotSource %>">
+                            </div>
+
+                            <input type="hidden" value="<%= results.AuthorID %>" name="AuthorID">
+                            <input type="hidden" value="<%= results.BookID %>" name="BookID">
+                            <input type="hidden" value="<%= results.BookPlotID %>" name="BookPlotID">
+
+                            <button name="update" type="submit" formaction="/updateBook" formmethod="POST"
+                                class="btn btn-success w-100">CONFIRM CHANGES</button>
+
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <!-- DELETE -->
-        <div id="collapseDelete-<%= index %>" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-            <div class="card-body">
-                <form class="btn-group" onsubmit="return confirm('Confirm Action?');">
-                    <button name="delete" type="submit" formaction="/deleteBook" formmethod="POST"
-                        class="btn btn-danger w-50" value="<%= results.BookID %>">Confirm Delete Book:
-                        <%= results.BookID %></button>
-                </form>
-            </div>
-        </div>
 
     </div>
 </section>
