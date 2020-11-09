@@ -88,10 +88,6 @@ router.post('/updateBook', isLoggedIn, async (req, res) => {
         var coverImagePath = req.body.defaultFile;
     }
 
-    console.log(req.body.AuthorID)
-    console.log(req.body.BookID)
-    console.log(req.body.BookPlotID)
-
     // Start connection
     connection.getConnection(function (err, conn) {
 

@@ -12,8 +12,10 @@ app = express(),
 	// Connect to Database and pass in Passport
 	require('./config/passport')(passport);
 
-// Set up Cookies, BodyParser and Morgan logging
-app.use(morgan('dev'));
+// Morgan for logging
+// app.use(morgan('dev'));
+
+// Cookies
 app.use(cookieParser());
 
 // Express Layouts
