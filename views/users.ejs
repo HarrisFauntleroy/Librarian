@@ -48,7 +48,7 @@
                     </div>
 
                     <button name="update" type="submit" formaction="/updateUser" formmethod="POST"
-                        class="btn btn-primary w-50" value="<%= results.loginID %>">Edit</button>
+                        class="btn btn-primary w-100" value="<%= results.loginID %>">Edit</button>
                 </form>
             </div>
         </div>
@@ -56,9 +56,9 @@
         <!-- DELETE -->
         <div id="collapseDelete-<%= index %>" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
             <div class="card-body">
-                <form class="btn-group">
+                <form class="text-center">
                     <button name="delete" type="submit" formaction="/deleteUser" formmethod="POST"
-                        class="btn btn-danger w-50" value="<%= results.loginID %>">Confirm Delete User:
+                        class="btn btn-danger w-100" value="<%= results.loginID %>">Confirm Delete User:
                         <%= results.loginID %></button>
                 </form>
             </div>

@@ -2,30 +2,30 @@ PHP has been chosen as the programming language to handle the website/database i
 
 PART ONE
 
-    1. Create the login and registration pages 
-    2. Use an appropriate hashing/encryption method for the password
-    3. Write the necessary PHP PDO code or the latest libraries or extension to connect to the database
-    4. Validate the form input 
-    5. Sanitise all form input before using it in the database – use appropriate methods to filter the data
-    6. Comment and indent the code appropriately
+    1. Create the login and registration pages x
+    2. Use an appropriate hashing/encryption method for the passwordx
+    3. Write the necessary PHP PDO code or the latest libraries or extension to connect to the databasex
+    4. Validate the form input x
+    5. Sanitise all form input before using it in the database – use appropriate methods to filter the datax
+    6. Comment and indent the code appropriatelyx
 
 PART TWO
-    1. Write the necessary PHP PDO code to select and display all books in the database with the corresponding details. The output must be properly formatted and must be responsive.
-    2. Write the necessary PHP PDO code to add (insert) new books to the database. When adding a new book you need to enter new information in four tables (book, author, bookplot, bookranking)
-    3. Write the necessary PHP PDO code to update the selected book
-    4. Write the necessary PHP PDO code to delete the selected book
-    5. Comment and indent the code appropriately
+    1. Write the necessary PHP PDO code to select and display all books in the database with the corresponding details. The output must be properly formatted and must be responsive.x
+    2. Write the necessary PHP PDO code to add (insert) new books to the database. When adding a new book you need to enter new information in four tables (book, author, bookplot, bookranking)x
+    3. Write the necessary PHP PDO code to update the selected bookx
+    4. Write the necessary PHP PDO code to delete the selected bookx
+    5. Comment and indent the code appropriatelyx
 
 PART THREE
-    1. Security and Sessions. Write the necessary PHP code to ensure that if a person is not logged in they cannot access the admin pages by, for example, typing the page URL. To achieve his part you need to use sessions.
-    2. Write the necessary PHP code to close a session and logout of the site.
+    1. Security and Sessions. Write the necessary PHP code to ensure that if a person is not logged in they cannot access the admin pages by, for example, typing the page URL. To achieve his part you need to use sessions.x
+    2. Write the necessary PHP code to close a session and logout of the site.x
     
 PART FOUR
 Site Files/Database Files
-Completed site folder and a copy of the database structure and data (exported file).
+Completed site folder and a copy of the database structure and data (exported file).x
 	Include a ‘read me’ file for any information that the assessor may need to know to access your project e.g. passwords username and so on.
 Word or PDF document
-Take screenshots of the following PHP code segments and include them in the document. Provide a brief explanation for each segment:
+Take screenshots of the following PHP code segments and include them in the document. Provide a brief explanation for each segment:x
 
 The following sections of PHP code must be formatted correctly, the code must also be indented and commented.
 

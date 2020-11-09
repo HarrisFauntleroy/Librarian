@@ -6,7 +6,7 @@
 <% for (let results of result) { %>
 <% index++ %>
 <section id="accordion" class="border rounded shadow mt-4 m-2 bg-transparent rounded card mx-auto"
-    name="<%= results.BookTitle %>">
+    name="<%= results.BookTitle %> <%= results.Name %> <%= results.Surname %>">
     <div class="card" style="width: 200px;">
         <img class=" card-img-top" src="<%= results.coverImagePath %>" alt='Book  Cover'
             style="object-fit: cover; height: 300px; background-color: black;" />
