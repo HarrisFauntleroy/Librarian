@@ -5,12 +5,11 @@ const express = require('express'),
 	session = require('express-session'),
 	cookieParser = require('cookie-parser'),
 	fileUpload = require("express-fileupload"),
-	expressLayouts = require('express-ejs-layouts');
+	expressLayouts = require('express-ejs-layouts'),
+	app = express();
 
-app = express(),
-
-	// Connect to Database and pass in Passport
-	require('./config/passport')(passport);
+// Connect to Database and pass in Passport
+require('./config/passport')(passport);
 
 // Morgan for logging
 // app.use(morgan('dev'));
