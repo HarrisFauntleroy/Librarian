@@ -30,7 +30,7 @@ router.get('/users', isLoggedIn, async (req, res) => {
 //////////////////////////////////////////////////////////////////
 // DELETE USER
 //////////////////////////////////////////////////////////////////
-router.post('/deleteUser', async (req, res) => {
+router.post('/deleteUser', isLoggedIn, async (req, res) => {
     let sql = `DELETE FROM login where loginID = ${req.body.delete}`;
     connection.query(sql, (err, result, fields) => {
         if (err) throw err;
@@ -46,7 +46,7 @@ router.post('/deleteUser', async (req, res) => {
 //////////////////////////////////////////////////////////////////
 // UPDATE USER
 //////////////////////////////////////////////////////////////////
-router.post('/updateUser', async (req, res) => {
+router.post('/updateUser', isLoggedIn, async (req, res) => {
     let sql = `UPDATE login SET username = '${req.body.username}', accessRights = '${req.body.accessRights}' where loginID = '${req.body.update}'`;
     connection.query(sql, (err, result, fields) => {
         if (err) throw err;
