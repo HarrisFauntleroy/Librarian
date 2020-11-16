@@ -12,7 +12,7 @@ Sign in/Sign out with sessions.
 No signup functionality, new users are added by an existing administritive user.
 
 Permissions:
-admin: fulL CRUD access. 
+admin: full CRUD access. 
 user: Read only.
 
 ## Install
