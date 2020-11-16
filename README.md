@@ -1,4 +1,4 @@
-# Library-Admin-Panel
+## Library-Admin-Panel
 
 An Administrative frontend for a MySQL, Node.JS & Express CRUD application.
 
@@ -34,7 +34,7 @@ npm run build
 -gcloud app deploy
 ```
 
-# See it in action
+## See it in action
 
 https://library-admin-panel-hf-294403.ts.r.appspot.com/
 
@@ -47,6 +47,8 @@ Please make sure to update tests as appropriate.
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
+
+## Media
 
 ![Image of Mobile-1](https://raw.githubusercontent.com/HarrisFauntleroy/library-admin-panel/main/example-images/Screenshot%20from%202020-11-16%2011-21-01.png)
 ![Image of Mobile-2](https://raw.githubusercontent.com/HarrisFauntleroy/library-admin-panel/main/example-images/Screenshot%20from%202020-11-16%2011-21-18.png)
