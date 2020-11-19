@@ -55,6 +55,7 @@ module.exports = function (passport) {
 
                     if (rows.length) {
                         return done(null, false, req.flash('signupMessage', 'That username is already taken.'));
+    
                     } else {
                         // if there is no user with that username
                         // create the user

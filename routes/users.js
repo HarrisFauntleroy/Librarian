@@ -66,7 +66,6 @@ router.post('/addUser', isLoggedIn, async (req, res, next) => {
     connection.query("SELECT * FROM login WHERE username = ?", [req.body.username], function (err, rows) {
         if (err)
             return next(err);
-
         if (rows.length) {
             return next(null, false, req.flash('signupMessage', 'That username is already taken.'));
         } else {

@@ -24,7 +24,7 @@ router.get('/books', isLoggedIn, async (req, res) => {
 		INNER JOIN author AS a 
 		ON b.AuthorID = a.AuthorID`;
     connection.query(sql, (err, result, fields) => {
-        if (err) throw err;
+        if (err) console.log(err)
         res.render('books', {
             result,
             table: 'books',
@@ -45,7 +45,7 @@ router.post('/deleteBook', isLoggedIn, async (req, res) => {
     let sql = `DELETE FROM book where BookID = ?`;
 
     connection.query(sql, [deleteBookSql.BookID], (err, result, fields) => {
-        if (err) throw err;
+        if (err) console.log(err)
         console.log(`Deleted Book with ID: ${deleteBookSql.BookID}`)
         let refresh = `SELECT * 
 		FROM book AS b
@@ -54,7 +54,7 @@ router.post('/deleteBook', isLoggedIn, async (req, res) => {
 		INNER JOIN author AS a 
 		ON b.AuthorID = a.AuthorID`;
         connection.query(refresh, (err, result, fields) => {
-            if (err) throw err;
+            if (err) console.log(err)
             res.redirect('books')
         });
     });
@@ -84,7 +84,7 @@ router.post('/updateBook', isLoggedIn, async (req, res) => {
         console.log(`Image uploaded to ${coverImagePath}`)
 
     } catch (err) {
-        console.log(err);
+        console.log('No Image uploaded');
         var coverImagePath = req.body.defaultFile;
     }
 
@@ -128,21 +128,21 @@ router.post('/updateBook', isLoggedIn, async (req, res) => {
             conn.query(updateAuthor, [updateAuthorSql.Name, updateAuthorSql.Surname, updateAuthorSql.Nationality, updateAuthorSql.BirthYear, updateAuthorSql.DeathYear, updateAuthorSql.AuthorID], function (err, res) {
                 if (err) {
                     return conn.rollback(function () {
-                        throw err;
+                        console.log(err.sqlMessage)
                     });
                 }
-                (err != null) ? console.log(err) : console.log(`Author inserted`);
+                (err != null) ? console.log(err.sqlMessage) : console.log(`Author updated`);
 
                 // Book
                 var updateBook = `UPDATE book SET BookTitle=?, OriginalTitle=?, YearofPublication=?, Genre=?, MillionsSold=?, LanguageWritten=?, coverImagePath=? WHERE BookID = ?`;
                 conn.query(updateBook, [updateBookSql.BookTitle, updateBookSql.OriginalTitle, updateBookSql.YearofPublication, updateBookSql.Genre, updateBookSql.MillionsSold, updateBookSql.LanguageWritten, updateBookSql.coverImagePath, updateBookSql.BookID], function (err, res) {
                     if (err) {
                         return conn.rollback(function () {
-                            throw err;
+                            console.log(err.sqlMessage)
                         });
 
                     }
-                    (err != null) ? console.log(err) : console.log(`Book inserted`);
+                    (err != null) ? console.log(err.sqlMessage) : console.log(`Book updated`);
 
                     // Book Plot
                     var updateBookPlot = `UPDATE bookplot SET Plot=?, PlotSource=? WHERE BookPlotID = ?`;
@@ -150,19 +150,19 @@ router.post('/updateBook', isLoggedIn, async (req, res) => {
                     conn.query(updateBookPlot, [updateBookPlotSql.Plot, updateBookPlotSql.PlotSource, updateBookPlotSql.BookPlotID], function (err, res) {
                         if (err) {
                             return conn.rollback(function () {
-                                throw err;
+                                console.log(err.sqlMessage)
                             });
                         }
-                        (err != null) ? console.log(err) : console.log(`Book Plot inserted`);
+                        (err != null) ? console.log(err.sqlMessage) : console.log(`Book Plot updated`);
 
                         // Commit transaction
                         conn.commit(function (err) {
                             if (err) {
                                 return conn.rollback(function () {
-                                    throw err;
+                                    console.log(err.sqlMessage)
                                 });
                             }
-                            (err != null) ? console.log(err) : console.log('Transaction Complete! $$$');
+                            (err != null) ? console.log(err.sqlMessage) : console.log('Transaction Complete! $$$');
                         });
                     });
                 });
@@ -197,7 +197,7 @@ router.post('/addBook', isLoggedIn, async (req, res) => {
         console.log(`Image uploaded to ${coverImagePath}`)
 
     } catch (err) {
-        console.log(err);
+        console.log('No image uploaded');
     }
 
     // Start connection
@@ -232,28 +232,28 @@ router.post('/addBook', isLoggedIn, async (req, res) => {
             };
 
             // Author
-            var insertAuthor = `INSERT IGNORE INTO author (Name, Surname, Nationality, BirthYear, DeathYear) VALUES (?,?,?,?,?)`;
+            var insertAuthor = `INSERT IGNORE INTO author (Name, Surname, Nationality, BirthYear, DeathYear) VALUES (?,?,?,?,?) ON DUPLICATE KEY UPDATE Nationality = ?, BirthYear = ?, DeathYear = ?`;
 
-            conn.query(insertAuthor, [authorSql.Name, authorSql.Surname, authorSql.Nationality, authorSql.BirthYear, authorSql.DeathYear], function (err, res) {
+            conn.query(insertAuthor, [authorSql.Name, authorSql.Surname, authorSql.Nationality, authorSql.BirthYear, authorSql.DeathYear, authorSql.Nationality, authorSql.BirthYear, authorSql.DeathYear], function (err, res) {
                 if (err) {
                     return conn.rollback(function () {
-                        throw err;
+                        console.log(err.sqlMessage)
                     });
                 }
                 authorSql.AuthorID = res.insertId;
-                (err != null) ? console.log(err) : console.log(`Author inserted`);
+                (err != null) ? console.log(err.sqlMessage) : console.log(`Author inserted`);
 
                 // Book
                 var insertBook = `INSERT INTO book (BookTitle, OriginalTitle, YearofPublication, Genre, MillionsSold, LanguageWritten, AuthorID, coverImagePath) VALUES (?,?,?,?,?,?,?,?)`;
                 conn.query(insertBook, [bookSql.BookTitle, bookSql.OriginalTitle, bookSql.YearofPublication, bookSql.Genre, bookSql.MillionsSold, bookSql.LanguageWritten, authorSql.AuthorID, bookSql.coverImagePath], function (err, res) {
                     if (err) {
                         return conn.rollback(function () {
-                            throw err;
+                            console.log(err.sqlMessage)
                         });
 
                     }
                     bookSql.BookID = res.insertId;
-                    (err != null) ? console.log(err) : console.log(`Book inserted`);
+                    (err != null) ? console.log(err.sqlMessage) : console.log(`Book inserted`);
 
                     // Book Plot
                     var insertBookPlot = `INSERT INTO bookplot (Plot, PlotSource, BookID) VALUES (?,?,?)`;
@@ -261,20 +261,20 @@ router.post('/addBook', isLoggedIn, async (req, res) => {
                     conn.query(insertBookPlot, [bookPlotSql.Plot, bookPlotSql.PlotSource, bookSql.BookID], function (err, res) {
                         if (err) {
                             return conn.rollback(function () {
-                                throw err;
+                                console.log(err.sqlMessage)
                             });
                         }
                         bookPlotSql.BookPlotID = res.insertId;
-                        (err != null) ? console.log(err) : console.log(`Book Plot inserted`);
+                        (err != null) ? console.log(err.sqlMessage) : console.log(`Book Plot inserted`);
 
                         // Commit transaction
                         conn.commit(function (err) {
                             if (err) {
                                 return conn.rollback(function () {
-                                    throw err;
+                                    console.log(err.sqlMessage)
                                 });
                             }
-                            (err != null) ? console.log(err) : console.log('Transaction Complete! $$$');
+                            (err != null) ? console.log(err.sqlMessage) : console.log('Transaction Complete! $$$');
                         });
                     });
                 });

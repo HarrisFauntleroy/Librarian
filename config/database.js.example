@@ -1,13 +1,11 @@
 module.exports = {
     'connection': Object.assign({
-        'user': '<user>',
-        'password': '<password>',
-        'database': '<database>'
+        'user': '<example>',
+        'password': '<example>',
+        'database': '<example>'
     },
         process.env.NODE_ENV !== 'development' ?
-            { 'socketPath': "<cloudsqlconnectionstring" } :
-            { 'host': '<hostname>' }
+            { 'socketPath': "<example>" } :
+            { 'host': '<example>' }
     )
 };
-
-// Rename this file to database.js and fill in the missing details.
