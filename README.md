@@ -34,10 +34,6 @@ npm run build
 -gcloud app deploy
 ```
 
-## See it in action
-
-https://library-admin-panel-hf-294403.ts.r.appspot.com/
-
 ## Contributing
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
