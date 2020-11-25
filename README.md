@@ -27,11 +27,10 @@ npm install
 npm run build
 ```
 
-## Deploy
+## Run
 
 ```bash
--gcloud init
--gcloud app deploy
+npm run dev
 ```
 
 ## Contributing
